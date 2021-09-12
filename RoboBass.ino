@@ -5,12 +5,9 @@
 
 #include "music_api.h"
 
-Bass bass(4,5,6,7);
+Bass bass(4,5,6,7); // actuator relays connected to pins 4, 5, 6, 7. change as needed.
 Player player(bass);
-char song[] = "E;A;B;D;B;A;B;A;E;A;B;D;B;A;B;A;E;A;B;D;B;A;B;A;E;A;B;D;B;A;B;A";
-const int rest = 500;
-long long noteTime = 0;
-int head = 0;
+char song[] = "E;A;B;D;B;A;B;A;E;A;B;D;B;A;B;A;E;A;B;D;B;A;B;A;E;A;B;D;B;A;B;A"; // sample sequence
 
 void setup()
 {

@@ -22,9 +22,8 @@ public:
     Bass(9, 10, 11, 12);
   }
 
-  Bass(int s1, int s2, int s3, int s4) //: epoch(millis())
+  Bass(int s1, int s2, int s3, int s4) 
   {
-    //epoch = millis();
     pinMode(s1, OUTPUT);
     pinMode(s2, OUTPUT);
     pinMode(s3, OUTPUT);
