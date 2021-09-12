@@ -3,13 +3,15 @@
  * (c) 2021 romir kulshrestha <github.com/romirk> 
  */
 
-
 #include "Arduino.h"
 #include "bass_api.h"
 
 #ifndef Music_h
 #define Music_h
 
+/**
+ * Note API
+ */
 class Player
 {
     Bass bass;
@@ -26,12 +28,18 @@ public:
     {
     }
 
+    /**
+     * load a note sequence
+     */
     int **load(char *s)
     {
         song = s;
         playing = true;
     }
 
+    /**
+     * play next note sequence
+     */
     void playNext()
     {
         do
@@ -59,19 +67,26 @@ public:
                 break;
             }
         } while (song[head]);
-        if(!song[head]) playing = false;
+        if (!song[head])
+            playing = false;
     }
 
+    /**
+     * plays notes by calling bass object. called once per loop.
+     */
     void tick()
     {
-        if (!playing) {
-            if(loop) {
+        if (!playing)
+        {
+            if (loop)
+            {
                 head = 0;
                 playing = true;
             }
-            else return;
+            else
+                return;
         }
-            
+
         long long t = millis();
         if (t - noteTime >= frequency)
         {
@@ -81,6 +96,9 @@ public:
         bass.tick(t);
     }
 
+    /**
+     * you tell me
+     */
     void setTempo(int t)
     {
         tempo = t;
