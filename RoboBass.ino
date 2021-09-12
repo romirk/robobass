@@ -1,3 +1,8 @@
+/*
+ * RoboBass - robotic double bass controller
+ * (c) 2021 romir kulshrestha <github.com/romirk> 
+ */
+
 #include "music_api.h"
 
 Bass bass(4,5,6,7);

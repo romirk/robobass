@@ -1,3 +1,9 @@
+/*
+ * player API for arduino double bass
+ * (c) 2021 romir kulshrestha <github.com/romirk> 
+ */
+
+
 #include "Arduino.h"
 #include "bass_api.h"
 
