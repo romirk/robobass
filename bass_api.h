@@ -1,4 +1,3 @@
-// bass api
 #include "Arduino.h"
 
 #ifndef Bass_h
@@ -8,8 +7,6 @@ class Bass
 {
   int stringPins[4];
   long stringActivation[4] = {0};
-  //int frequency = 1;
-  //const long epoch;
 
 public:
   Bass()

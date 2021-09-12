@@ -10,6 +10,8 @@ class Player
     int tempo = 90;
     int frequency = 90 * 1000 / 60;
     char *song;
+    int head = 0;
+    bool loop = true;
     bool playing = false;
     long long noteTime = 0;
 
@@ -28,8 +30,9 @@ public:
     {
         do
         {
-            char n = *song++;
-            if(n == ';') break;
+            char n = song[head++];
+            if (n == ';')
+                break;
             switch (n)
             {
             case 'E':
@@ -42,19 +45,40 @@ public:
                 break;
             case 'D':
             case 'd':
-                bass.pluck(1, 150);
+                bass.pluck(2, 150);
                 break;
             case 'B':
             case 'b':
-                bass.pluck(1, 150);
+                bass.pluck(3, 150);
                 break;
             }
-        } while(*song);
+        } while (song[head]);
+        if(!song[head]) playing = false;
     }
 
-    void tick() {
-        if(millis() - noteTime >= frequency) playNext();
-        bass.tick();
+    void tick()
+    {
+        if (!playing) {
+            if(loop) {
+                head = 0;
+                playing = true;
+            }
+            else return;
+        }
+            
+        long long t = millis();
+        if (t - noteTime >= frequency)
+        {
+            noteTime = t;
+            playNext();
+        }
+        bass.tick(t);
+    }
+
+    void setTempo(int t)
+    {
+        tempo = t;
+        frequency = t * 1000 / 60;
     }
 };
 #endif
