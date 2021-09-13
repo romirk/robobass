@@ -14,10 +14,10 @@ void setup()
     //Serial.begin(9600);
     bass.reset();
     player.setTempo(90);
+    player.load(song);
 }
 
 void loop()
-{   
-    player.load(song);
+{
     player.tick();
 }
